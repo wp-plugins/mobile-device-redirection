@@ -26,7 +26,7 @@ function mobile_device_redirection_wp_loaded() {
   setcookie('mobile_device_redirection', $is_mobile ? 'mobile' : 'desktop', 0, '/');
 
   // redirect if a mobile device is found
-  if ($is_mobile) {
+  if ($is_mobile && array_key_exists('json', $_GET) === false) {
     $options = get_option('mobile_device_redirection_options');
     header('Location: ' . $options['mobile_device_redirection_url']);
     exit;
